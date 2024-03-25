@@ -18,6 +18,7 @@ body{
   z-index: 1;
   box-shadow: 3px 3px 3px;
   background: rgb(198, 200, 202);
+  padding-right: 15px;
 }
 .fas{
   display: none;
@@ -82,8 +83,11 @@ li a:hover::after{
 
 @media screen and (max-width:768px) {
   i{
-    font-size: 50px;
+    font-size: 30px;
     color: hsla(249, 96%, 27%, 0.833);
+  }
+  .fa-bars{
+    font-size: 50px;
   }
   .fas{
       display: block;
