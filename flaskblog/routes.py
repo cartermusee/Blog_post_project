@@ -1,7 +1,7 @@
 from flask import render_template,url_for, redirect, flash,abort, request,session
 from flaskblog import app,db,bcrypt
 from flaskblog.modules import User,Post
-from flaskblog.files import Registration,Login, AccountUpdateForm,PostForm,RequestResetForm,ResetPassword
+from flaskblog.files import Registration,Login, AccountUpdateForm,PostForm,RequestResetForm,ResetPassword, SearchForm
 from flask_login import login_user,current_user,logout_user,login_required
 from flaskblog import mail
 from flask_mail import Message
@@ -12,9 +12,10 @@ from flask_mail import Message
 # @login_required
 def home():
     """function for home page"""
+    form = SearchForm()
     page = request.args.get('page',1,type=int)
     posts=Post.query.order_by(Post.date_posted.desc()).paginate(page=page,per_page=5)
-    return render_template("home.html",posts=posts)
+    return render_template("home.html",posts=posts, form=form)
 
 @app.route("/about/")
 def about():
@@ -97,6 +98,7 @@ def new_post():
 @login_required
 def post(post_id):
     """function for a single post"""
+    form = SearchForm()
     post = Post.query.get_or_404(post_id)
     return render_template('post.html',post=post)
 
@@ -187,3 +189,17 @@ def reset_token(token):
         return redirect(url_for('login'))
     return render_template('reset_token.html',form=form)
 
+
+@app.route("/search", methods=['GET', 'POST'])
+def search():
+    form = SearchForm()
+    res_searched = None
+    if form.validate_on_submit():
+        searched = form.searched.data
+        res_searched = Post.query.filter_by(title=searched).all()
+        if res_searched:
+            return render_template('search.html', res_searched=res_searched, form=form)
+        else:
+            flash("not a valid title", 'danger')
+            return redirect(url_for('home'))
+    return render_template('home.html', form=form)

@@ -25,3 +25,16 @@
     {% endfor %}
 
 {% endblock %}
+
+
+{% block Tosearch %}
+<form action="{{url_for('search')}}" method="POST">
+    {{ form.hidden_tag() }}
+    <p>
+      {{ form.searched(placeholder="search title") }}
+    </p>
+    <p>{{ form.submit }}</p>
+  </form>
+  <p class='text-muted'>You can put any information here you'd like.
+
+{% endblock %}
