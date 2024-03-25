@@ -78,8 +78,8 @@ li a:hover::after{
 
 @media screen and (max-width:768px) {
   i{
-      font-size: 50px;
-      color: hsla(249, 96%, 27%, 0.833);
+    font-size: 50px;
+    color: hsla(249, 96%, 27%, 0.833);
   }
   .fas{
       display: block;
