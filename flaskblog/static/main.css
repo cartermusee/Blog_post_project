@@ -5,7 +5,7 @@
   font-family: sans-serif;
 }
 body{
-  background: aliceblue;
+  background: rgb(239, 242, 245);
 }
 .navigation{
   padding: 20px;
@@ -18,12 +18,27 @@ body{
 .fas{
   display: none;
 }
+.logo{
+  width: 70px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: #333;
+  color: white;
+}
 .logo a{
-  font-size: 40px;
+  font-size: 10px;
   text-decoration: none;
   position: relative;
-  margin: 10px;
   text-transform: uppercase;
+}
+.menu-items{
+  padding-right: 20px;
+  width: 40%;
+  display: flex;
+  justify-content: space-around;
 }
 ul li{
   list-style: none;
@@ -34,8 +49,9 @@ ul li{
 }
 ul li a{
   text-decoration: none;
-  font-size: 20px;
+  font-size: 30px;
   position: relative;
+  color: blueviolet;
   
 }
 li a::after{
@@ -51,11 +67,10 @@ li a:hover::after{
   width: 100%;
 }
 
-.logo a:hover{
-  border: 2px solid white;
-  background: hsla(249, 96%, 27%, 0.833);
-  color: black;
-  border-radius: 12px;
+.logo:hover{
+  background: hsla(249, 10%, 74%, 0.833);
+  color: rgb(76, 59, 59);
+  
 }
 .show{
   display: block;
@@ -77,14 +92,13 @@ li a:hover::after{
 
   }
   .menu-items{
-      position: absolute;
-      padding: 0 10px;
-      top: 30px;
-      right: 0;
-      border: 2px solid black;
-      display: none;
-      
-      
+    width: 20%;
+    position: absolute;
+    padding: 0 10px;
+    top: 30px;
+    right: 0;
+    border: 2px solid black;
+    display: none;
   }
   .show{
       display: block;
