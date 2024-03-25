@@ -11,16 +11,19 @@ from flask_mail import Message
 @app.route("/home")
 # @login_required
 def home():
+    """function for home page"""
     page = request.args.get('page',1,type=int)
     posts=Post.query.order_by(Post.date_posted.desc()).paginate(page=page,per_page=5)
     return render_template("home.html",posts=posts)
 
 @app.route("/about/")
 def about():
+    """function for about page"""
     return render_template("about.html",title="About")
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
+    """method for register a user"""
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = Registration()
@@ -35,6 +38,7 @@ def register():
 
 @app.route("/login", methods=['GET',"POST"])
 def login():
+    """function for user to login and authenticate user"""
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = Login()
@@ -53,6 +57,7 @@ def login():
 
 @app.route("/logout")
 def logout():
+    """logout function"""
     logout_user()
     return redirect(url_for('home'))
 
@@ -60,6 +65,7 @@ def logout():
 @app.route("/account", methods=['GET',"POST"])
 @login_required
 def account():
+    """function for the account page"""
     form = AccountUpdateForm()
     if form.validate_on_submit():
         current_user.username = form.username.data
@@ -76,6 +82,7 @@ def account():
 @app.route("/post/new",methods=['GET','POST'])
 @login_required
 def new_post():
+    """function for creating a new post"""
     form = PostForm()
     if form.validate_on_submit():
         post = Post(title=form.title.data, content=form.content.data,author=current_user)
@@ -89,6 +96,7 @@ def new_post():
 @app.route("/post/<int:post_id>",methods=['GET','POST'])
 @login_required
 def post(post_id):
+    """function for a single post"""
     post = Post.query.get_or_404(post_id)
     return render_template('post.html',post=post)
 
@@ -97,6 +105,7 @@ def post(post_id):
 @app.route("/post/<int:post_id>/update",methods=['GET','POST'])
 @login_required
 def update_post(post_id):
+    """function to update a post"""
     post = Post.query.get_or_404(post_id)
     if post.author != current_user:
         abort(403)
@@ -115,6 +124,7 @@ def update_post(post_id):
 @app.route("/post/<int:post_id>/delete",methods=['POST'])
 @login_required
 def delete_post(post_id):
+    """functon to delete a post"""
     post = Post.query.get_or_404(post_id)
     if post.author != current_user:
         abort(403)
@@ -126,6 +136,7 @@ def delete_post(post_id):
 @app.route("/user/<string:username>")
 @login_required
 def user_posts(username):
+    """function to check a single user post and display them"""
     page = request.args.get('page',1,type=int)
     user = User.query.filter_by(username=username).first_or_404()
     posts=Post.query.filter_by(author=user)\
@@ -134,6 +145,7 @@ def user_posts(username):
     return render_template("user_post.html",posts=posts,user=user)
 
 def send_reset_email(user):
+    """functionto verify the reset token"""
     token = user.get_reset_token()
     msg = Message('passwword Reset Request',
                   sender='cartermusee@gmail.com',
@@ -146,6 +158,7 @@ def send_reset_email(user):
 
 @app.route("/reset_password",methods=['GET','POST'])
 def reset_request():
+    """Reset request page"""
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = RequestResetForm()
@@ -158,6 +171,7 @@ def reset_request():
 
 @app.route("/reset_password/<token>",methods=['GET','POST'])
 def reset_token(token):
+    """"reset token page function"""
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     user = User.verify_reset_token(token)

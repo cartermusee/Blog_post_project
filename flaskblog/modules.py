@@ -1,3 +1,4 @@
+"""module for the database tables"""
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flaskblog import db,login_manager, app
 from datetime import datetime
