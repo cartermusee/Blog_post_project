@@ -110,7 +110,19 @@ li a:hover::after{
   ul li a{
       font-size: 25px;
   }
+ 
+  .search{
+    top: 0;
+    
+  }
   
+  .search-section h3{
+    display: none;
+  }
+  .hm{
+    margin-top: 5rem;
+  }
+
 }
 
 
@@ -195,4 +207,30 @@ a.article-title:hover {
 }
 .media img{
   border: 1px solid rgb(192, 192, 198);
+}
+
+
+.container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: column;
+  position: relative;
+}
+.search{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+
+/* footer */
+.footer{
+  margin-bottom: 0;
+  padding: 0 20px;
+}
+.info{
+  width: 70%;
+  margin:0 auto;
+  text-align: center;
 }
