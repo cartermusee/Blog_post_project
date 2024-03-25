@@ -69,17 +69,21 @@ li a:hover::after{
   .fas{
       display: block;
   }
+  .fa-times{
+    font-size: 30px;
+  }
   .navigation{
       position: relative;
 
   }
   .menu-items{
       position: absolute;
+      padding: 0 10px;
       top: 30px;
       right: 0;
-      margin-right: 5px;
       border: 2px solid black;
       display: none;
+      
       
   }
   .show{
