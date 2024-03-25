@@ -8,12 +8,16 @@ body{
   background: rgb(239, 242, 245);
 }
 .navigation{
-  padding: 20px;
   color: black;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  box-shadow: 3px 3px 3px;
+  background: rgb(198, 200, 202);
 }
 .fas{
   display: none;
@@ -222,11 +226,15 @@ a.article-title:hover {
   top: 0;
   right: 0;
 }
-
-
+.about{
+  height: 80vh;
+}
+.login , .register{
+  height: 80vh;
+}
 /* footer */
 .footer{
-  margin-bottom: 0;
+  border-top: 1px solid black;
   padding: 0 20px;
 }
 .info{
