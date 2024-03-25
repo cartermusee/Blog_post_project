@@ -196,7 +196,7 @@ def search():
     res_searched = None
     if form.validate_on_submit():
         searched = form.searched.data
-        res_searched = Post.query.filter_by(title=searched).all()
+        res_searched = Post.query.filter(Post.title.like(f"%{searched}%")).all()
         if res_searched:
             return render_template('search.html', res_searched=res_searched, form=form)
         else:

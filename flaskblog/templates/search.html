@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
 {% block body%}
+{% for result in res_searched%}
 <article class="media content-section">
     <div class="media-body">
       <div class="article-metadata">
-        {% for result in res_searched%}
         <a class="mr-2" href="{{ url_for('user_posts', username=result.author.username) }}">{{ result.author.username }}</a>
       </div>
 
@@ -11,8 +11,9 @@
       <h2 class="article-title">{{ result.title }}</h2>
       <p class="article-content">{{ result.content }}</p>
       <small class="text-muted">Posted on: {{ result.date_posted }}</small>
-      {% endfor %}
+     
     </div>
   </article>
+  {% endfor %}
 {% endblock %}
 
