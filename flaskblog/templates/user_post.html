@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block body%}
-<h1 class="mb-3">Post by {{user.username}}({{posts.total}})</h1>
+<div style="height: 80vh;">
+  <h1 class="mb-3">Post by {{user.username}}({{posts.total}})</h1>
     {% for post in posts.items %}
     <article class="media content-section">
         <div class="media-body">
@@ -24,5 +25,6 @@
         ...
       {% endif %}
     {% endfor %}
+</div>
 
 {% endblock %}
