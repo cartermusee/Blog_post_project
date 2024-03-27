@@ -5,8 +5,12 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_mail import Mail
+from dotenv import load_dotenv
 
 app = Flask(__name__)
+
+from dotenv import load_dotenv
+load_dotenv()
 
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
