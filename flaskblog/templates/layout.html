@@ -25,7 +25,7 @@
           <li><a class="nav-item nav-link" href="{{url_for('home') }}">Home</a></li>
           <li><a class="nav-item nav-link" href="{{ url_for('about') }}">About</a></li>
           {% if current_user.is_authenticated %}
-          <li><a class="nav-item nav-link" href="{{ url_for('new_post') }}">Create a Post </a></li>
+          <li><a class="nav-item nav-link" href="{{ url_for('new_post') }}">Add Post </a></li>
           <li><a class="nav-item nav-link" href="{{ url_for('account') }}">Acount</a></li>
           <li><a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a></li>
           {%else%}
@@ -38,7 +38,8 @@
     <main role="main" class="container">
           <div class="row">
             <div class="col-md-8">
-              {% with messages = get_flashed_messages(with_categories = True)%}
+              <div class="pop">
+                {% with messages = get_flashed_messages(with_categories = True)%}
                 {% if messages %}
                   {% for category, message in messages %}
                     <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -48,6 +49,7 @@
                 {% endif %}
               
               {% endwith %}
+              </div>
 
               {% block body %}{% endblock %}
             </div>
