@@ -213,6 +213,7 @@ def post_api():
     all_posts = Post.query.all()
     for post in all_posts:
         posts.append({
+            'id': post.id,
             'title': post.title,
             'date_posted': post.date_posted,
             'content': post.content,
@@ -227,6 +228,7 @@ def post_api_id(id):
     post = Post.query.filter_by(id=id).first()
     if post:
         return jsonify({
+            'id': post.id,
             'title': post.title,
             'date_posted': post.date_posted,
             'content': post.content,
