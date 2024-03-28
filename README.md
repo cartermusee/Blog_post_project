@@ -32,6 +32,7 @@ pip install -r requirements.txt
 create a .env file and add the environmental variables:
 EMAIL_PASS='password for the email'
 EMAIL_USER='username of the email eg example@gmail.com'
+
 SECRET_KEY='secret key to enable form passing'
 
 for the secret key you can have anything as long as is not exposed
@@ -43,7 +44,7 @@ to run the the now do:
 python3 app.py
 
 # how to use
-Firts you need to register by creating an account.
+First you need to register by creating an account.
 ![Register](./screenshots/registerBlog.png)
 
 After account creation you will be redirected to the login page where you will login
@@ -53,5 +54,7 @@ Once you login you will be redirected to the home page where you can see all pos
 ![Register](./screenshots/bloghome.png)
 
 you will be able to access the naviagtion links such will enable you create a post visit the account page
-![Register](./screenshots/account.png)
+![Register](./screenshots/accountBlog.png)
 
+# Contribution
+For contribution you could email me at cartermusee@gmail.com for the details.
