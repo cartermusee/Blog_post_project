@@ -1,4 +1,4 @@
-from flask import render_template,url_for, redirect, flash,abort, request,session
+from flask import render_template,url_for, redirect, flash,abort, request,session, jsonify
 from flaskblog import app,db,bcrypt
 from flaskblog.modules import User,Post
 from flaskblog.files import Registration,Login, AccountUpdateForm,PostForm,RequestResetForm,ResetPassword, SearchForm
@@ -203,3 +203,34 @@ def search():
             flash("not a valid title", 'danger')
             return redirect(url_for('home'))
     return render_template('home.html', form=form)
+
+
+# my apis endpoints
+
+@app.route('/api/v1/post', methods=['GET', 'POST'])
+def post_api():
+    posts = []
+    all_posts = Post.query.all()
+    for post in all_posts:
+        posts.append({
+            'title': post.title,
+            'date_posted': post.date_posted,
+            'content': post.content,
+            'user_id': post.user_id
+        })
+    return jsonify(posts)
+
+
+#api of post by id
+@app.route('/api/v1/post/<int:id>', methods=['GET', 'POST'])
+def post_api_id(id):
+    post = Post.query.filter_by(id=id).first()
+    if post:
+        return jsonify({
+            'title': post.title,
+            'date_posted': post.date_posted,
+            'content': post.content,
+            'user_id': post.user_id
+        })
+    else:
+        return jsonify({'message': 'Post not found'}), 404
