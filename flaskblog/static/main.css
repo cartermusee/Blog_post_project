@@ -83,7 +83,10 @@ li a:hover::after{
 .show{
   display: block;
 }
-
+.del{
+  display: flex;
+  justify-content: flex-end;
+}
 
 @media screen and (max-width:768px) {
   i{
@@ -140,12 +143,20 @@ li a:hover::after{
   .account{
     height: 70vh;
   }
+  .del{
+    display: block;
+    text-align: right;
+  }
 
 }
 
 @media screen and (max-width:350px) {
   .search{
     margin-right: 1px;
+  }
+  .del{
+    display: block;
+    text-align: right;
   }
 }
 

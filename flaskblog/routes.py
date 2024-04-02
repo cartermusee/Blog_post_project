@@ -205,6 +205,20 @@ def search():
     return render_template('home.html', form=form)
 
 
+#delete account
+@app.route("/acount/<int:id>/delete",methods=['POST'])
+@login_required
+def delete_account(id):
+    user = User.query.filter_by(id=id).first()
+    if user != current_user:
+        abort(403)
+    db.session.delete(user)
+    db.session.commit()
+
+    logout_user()
+    return redirect(url_for('register'))
+
+
 # my apis endpoints
 
 @app.route('/api/v1/post', methods=['GET', 'POST'])
