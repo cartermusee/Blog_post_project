@@ -216,6 +216,7 @@ def delete_account(id):
     db.session.commit()
 
     logout_user()
+    flash('Account deleted successfully', 'success')
     return redirect(url_for('register'))
 
 
